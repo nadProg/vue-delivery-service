@@ -1,0 +1,9 @@
+@keyframes focus {
+  from {
+    filter: drop-shadow(0 0 var(--animation-min-blur) var(--animation-color));
+  }
+
+  to {
+    filter: drop-shadow(0 0 var(--animation-max-blur) var(--animation-color));
+  }
+}

@@ -1,0 +1,25 @@
+.message {
+  font-weight: 700;
+}
+
+.message--loading {
+  animation: loading 750ms infinite alternate;
+}
+
+.message--error {
+  color: var(--color-text-red);
+}
+
+@keyframes loading {
+  from {
+    color: var(--color-light-blue);
+  }
+
+  to {
+    color: var(--color-deep-blue);
+  }
+}
+
+.message--success {
+  color: var(--color-green);
+}

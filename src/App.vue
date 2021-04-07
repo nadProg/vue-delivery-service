@@ -1,28 +1,39 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <BaseApp>
+    <template #sprite>
+      <TheSprite />
+    </template>
+    <template #header>
+      {{ headerText }}
+    </template>
+    <template #filter>
+      <WrapperInput
+        key="delivery-method"
+        module="filter"
+        name="delivery-method"
+      />
+    </template>
+    <template #form>
+      <TheForm />
+    </template>
+  </BaseApp>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BaseApp from './components/BaseApp.vue';
+import TheForm from './components/TheForm.vue';
+import TheSprite from './components/TheSprite.vue';
+import WrapperInput from './components/WrapperInput.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    BaseApp,
+    TheForm,
+    TheSprite,
+    WrapperInput,
+  },
+  data: () => ({
+    headerText: 'Заказ доставки в интернет-магазине',
+  }),
+};
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

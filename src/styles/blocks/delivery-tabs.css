@@ -1,0 +1,108 @@
+.delivery-method-tabs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.delivery-method-tabs > h2 {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 48px;
+
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.delivery-method-tabs__pick-up,
+.delivery-method-tabs__item-delivery {
+  transition: opacity 1s var(--transition-base);
+}
+
+.delivery-method-tabs > input {
+  position: absolute;
+
+  clip: rect(0 0 0 0);
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.delivery-method-tabs > label {
+  width: 368px;
+  margin-right: 32px;
+  padding: 32px 40px 45px 40px;
+
+  cursor: pointer;
+  transition: box-shadow var(--transition-base), background var(--transition-base);
+
+  border-radius: 4px;
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-light-blue);
+}
+
+.delivery-method-tabs > label:last-of-type {
+  margin-right: 0;
+}
+
+.delivery-method-tabs > label span {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 30px;
+
+  display: block;
+
+  margin-bottom: 27px;
+
+  transition: color var(--transition-base);
+}
+
+.delivery-method-tabs > label svg {
+  transition: fill var(--transition-base);
+
+  fill: var(--color-light-blue);
+}
+
+.delivery-method-tabs > label:hover {
+  box-shadow: inset 0 0 0 2px var(--color-blue);
+}
+
+.delivery-method-tabs > label:hover svg {
+  transition: fill var(--transition-base);
+
+  fill: var(--color-blue);
+}
+
+.delivery-method-tabs > label:active {
+  background: url("~@/assets/img/link-checked.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.delivery-method-tabs > label:active span {
+  color: var(--color-text-white);
+}
+
+.delivery-method-tabs > label:active svg {
+  fill: var(--color-text-white);
+}
+
+.delivery-method-tabs > input:checked + label {
+  background: url("~@/assets/img/link-checked.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-shadow: none;
+}
+
+.delivery-method-tabs > input:focus + label {
+  animation: var(--animation-focus);
+}
+
+.delivery-method-tabs > input:checked + label span {
+  color: var(--color-text-white);
+}
+
+.delivery-method-tabs > input:checked + label svg {
+  fill: var(--color-text-white);
+}

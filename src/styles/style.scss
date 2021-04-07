@@ -1,0 +1,19 @@
+@use "./variables.css";
+
+@use "./vendor/normalize.css";
+
+@use "./global/fonts.css";
+@use "./global/reboot.css";
+@use "./global/typography.css";
+@use "./global/utils.css";
+
+@use "./blocks/page-header.css";
+@use "./blocks/wrapper.css";
+@use "./blocks/page-main.css";
+@use "./blocks/delivery-tabs.css";
+@use "./blocks/form.css";
+@use "./blocks/map.css";
+@use "./blocks/input-wrapper.css";
+@use './blocks/range-slider.css';
+@use './blocks/message.css';
+@use './blocks/animation.css';
