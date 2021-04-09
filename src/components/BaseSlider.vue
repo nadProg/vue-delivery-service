@@ -17,6 +17,7 @@
       :height="height"
       :dot-size="dotSize"
       :dot-attrs="dotAttrs"
+      :rail-style="{width: '376px', margin: '0 auto', background: 'none'}"
     >
       <template v-slot:tooltip="{ value }">
         <div class="vue-slider-custom-tooltip">
@@ -110,17 +111,11 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style>
 .vue-slider {
   margin-top: 42px;
   background: #f2f2f2;
   border-radius: 4px;
-}
-
-.vue-slider-rail {
-  width: 376px;
-  margin: 0 auto;
-  background: none;
 }
 
 .vue-slider-dot:focus {
