@@ -1,0 +1,76 @@
+.modal {
+  --radius: 20px;
+
+  position: fixed;
+  z-index : 1000;
+  top     : 0;
+  left    : 0;
+  width   : 100%;
+  height  : 100%;
+
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+.modal__background {
+  position        : absolute;
+  z-index         : -1;
+  width           : 100%;
+  height          : 100%;
+  background-color: black;
+  opacity         : 0.5;
+}
+
+.modal__window {
+  --window-color: var(--color-white);
+
+  width           : 25%;
+  padding         : 1%;
+  background-color: var(--window-color);
+  border-radius   : var(--radius);
+  text-align      : center;
+  font-weight     : bold;
+  filter          : drop-shadow(0 0 5px var(--window-color))
+}
+
+.modal__message {
+  margin-bottom: 5%;
+  color        : var(--color-black);
+}
+
+.modal__btn {
+  --animation-color: var(--btn-color);
+
+  min-width          : 25%;
+  padding            : 2%;
+  border             : none;
+  border-radius      : var(--radius);
+  font               : inherit;
+  color              : var(--color-white);
+  background-color   : var(--btn-color);
+  cursor             : pointer;
+  transition         : all var(--transition-base);
+  transition-property: background, opacity;
+  outline            : none;
+}
+
+.modal__btn:hover {
+  opacity: 0.7;
+}
+
+.modal__btn:active {
+  opacity: 0.9;
+}
+
+.modal__btn:focus {
+  animation: var(--animation-focus);
+}
+
+.modal__btn--success {
+  --btn-color: var(--color-green);
+}
+
+.modal__btn--error {
+  --btn-color: var(--color-red);
+}

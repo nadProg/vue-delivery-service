@@ -8,42 +8,39 @@
     >
       Заказать
     </button>
-    <div class="form__submit-state">
-      <p
+    <div
+      class="form__submit-state"
+      aria-live="polite"
+    >
+      <BaseMessage
         v-if="isLoading"
-        class="message message--loading"
+        status="loading"
       >
         Идет отправка...
-      </p>
-      <p
-        v-else-if="isError"
-        class="message message--error"
-      >
-        Произошла ошибка =(<br>Попробуйте еще раз
-      </p>
-      <p
-        v-else-if="isSuccess"
-        class="message message--success"
-      >
-        Заказ успешно сформирован!
-      </p>
-      <template v-else-if="!isFormValid">
-        <div aria-live="polite">
-          <p class="form__submit-header">
-            Осталось заполнить:
-          </p>
-          <p
-            class="form__submit-help"
-            v-html="submlitHelpContent"
-          />
-        </div>
-      </template>
+      </BaseMessage>
+      <BaseSubmitHelp
+        v-else-if="!isFormValid"
+        class="form__submit-help"
+        :missed-items="missedNames"
+      />
     </div>
+    <BaseModal
+      v-if="modal.show"
+      :status="modal.status"
+      @close="$emit('close-modal')"
+    >
+      {{ modal.text }}
+    </BaseModal>
   </div>
 </template>
 <script>
 export default {
   name: 'BaseSubmitBlock',
+  components: {
+    BaseModal: () => import('./BaseModal'),
+    BaseMessage: () => import('./BaseMessage'),
+    BaseSubmitHelp: () => import('./BaseSubmitHelp'),
+  },
   props: {
     isFormValid: {
       type: Boolean,
@@ -57,34 +54,14 @@ export default {
       type: Boolean,
       default: false,
     },
-    isError: {
-      type: Boolean,
-      default: false,
-    },
-    isSuccess: {
-      type: Boolean,
-      default: false,
+    modal: {
+      type: Object,
+      required: true,
     },
   },
   computed: {
     submitDisabled() {
       return !this.isFormValid || this.isLoading;
-    },
-    submlitHelpContent() {
-      let lastName;
-      const missedNames = this.missedNames.map(
-        (name) => `<span>${name}</span>`,
-      );
-
-      if (missedNames.length > 1) lastName = missedNames.pop();
-
-      let content = missedNames.join(', ');
-
-      if (lastName) {
-        content += ` и ${lastName}`;
-      }
-
-      return content;
     },
   },
   methods: {
@@ -94,4 +71,3 @@ export default {
   },
 };
 </script>
-<style></style>

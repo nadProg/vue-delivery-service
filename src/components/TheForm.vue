@@ -1,8 +1,7 @@
 <template>
   <BaseForm
+    :message="messageProps"
     :content="content[filter]"
-    :is-loading="isLoading"
-    :is-error="isError"
   >
     <template #elements>
       <template v-for="name of elementNames">
@@ -50,6 +49,10 @@ export default {
           'Курьер позвонит на указанный номер за час до доставки заказа.',
       },
     },
+    message: {
+      loading: 'Подождите идет загрузка...',
+      error: 'Что-то пошло не так, попробуйте позже...',
+    },
     isLoading: true,
     isError: false,
   }),
@@ -60,15 +63,25 @@ export default {
     ...mapGetters('form', {
       elementNames: 'elementsToShow',
     }),
+    messageStatus() {
+      if (this.isLoading) return 'loading';
+      if (this.isError) return 'error';
+      return '';
+    },
+    messageProps() {
+      return ({
+        status: this.messageStatus,
+        text: this.message[this.messageStatus],
+      });
+    },
   },
   beforeMount() {
     this.isLoading = true;
     this.isError = false;
 
     this.getData()
-      .catch((e) => {
+      .catch(() => {
         this.isError = true;
-        alert(e);
       })
       .finally(() => {
         this.isLoading = false;

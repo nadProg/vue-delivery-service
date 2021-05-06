@@ -8,20 +8,12 @@
       method="POST"
     >
       <h3>{{ content.formTitle }}</h3>
-      <p
-        v-if="isLoading"
-        class="message message--loading"
-        role="alert"
+      <BaseMessage
+        v-if="message.status"
+        :status="message.status"
       >
-        Подождите идет загрузка...
-      </p>
-      <p
-        v-else-if="isError"
-        class="message message--error"
-        role="alert"
-      >
-        Что-то пошло не так, попробуйте позже...
-      </p>
+        {{ message.text }}
+      </BaseMessage>
       <template v-else>
         <slot name="elements" />
         <span class="form__info">{{ content.formInfo }}</span>
@@ -31,20 +23,21 @@
   </section>
 </template>
 <script>
+import BaseMessage from './BaseMessage.vue';
+
 export default {
   name: 'BaseForm',
+  components: {
+    BaseMessage,
+  },
   props: {
     content: {
       type: Object,
       required: true,
     },
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
-    isError: {
-      type: Boolean,
-      deafault: true,
+    message: {
+      type: Object,
+      required: true,
     },
   },
 };

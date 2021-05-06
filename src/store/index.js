@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 import { form } from './modules/form';
 import { filter } from './modules/filter';
-// import map from './map';
 
 const BASE_URL = 'https://fake-json-shop-heroku.herokuapp.com';
 
@@ -29,13 +29,9 @@ export default new Vuex.Store({
   actions: {
     async getData({ state, commit, dispatch }) {
       const URL = `${BASE_URL}/db`;
-      const response = await fetch(URL);
+      const { data } = await axios.get(URL);
 
-      if (!response.ok) {
-        throw new Error(`${response.status}: ${response.statusText}`);
-      }
-
-      dispatch('adoptResponse', await response.json());
+      dispatch('adoptResponse', data);
 
       commit('form/setInputs', {
         name: 'city',
@@ -55,16 +51,11 @@ export default new Vuex.Store({
       dispatch('form/reset');
     },
     async sendData({ getters }) {
-      const method = 'POST';
       const URL = `${BASE_URL}/requests`;
       const body = JSON.stringify(getters['form/data']);
-      const contentType = 'application/json; charset=UTF-8';
+      const headers = {'content-type': 'application/json;charset=utf-8'};
 
-      return fetch(URL, {
-        body,
-        method,
-        'Content-Type': contentType,
-      });
+      return axios.post(URL, body, { headers });
     },
     adoptResponse({ commit }, { cities }) {
       const data = {
