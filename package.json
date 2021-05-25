@@ -1,16 +1,18 @@
 {
   "name": "delivery-service",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "leaflet": "^1.7.1",
+    "lodash": "^4.17.21",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-imask": "^6.0.7",

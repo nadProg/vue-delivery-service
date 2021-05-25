@@ -20,6 +20,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:nadprog/nadprog.github.io.git main
 # 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:nadprog/vue-delivery-service.git master:gh-pages
+git push -f git@github.com:nadprog/vue-delivery-service.git main:gh-pages
 
 cd -

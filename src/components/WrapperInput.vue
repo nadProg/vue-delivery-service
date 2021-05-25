@@ -7,6 +7,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import _ from 'lodash';
 
 export default {
   name: 'WrapperInput',
@@ -48,6 +49,9 @@ export default {
           return 'BaseTextInput';
       }
     },
+  },
+  created() {
+    this.updateValue = _.debounce(this.updateValue, 300);
   },
   methods: {
     ...mapActions({ rootUpdateValue: 'updateValue' }),
