@@ -51,7 +51,7 @@ export default {
     },
   },
   created() {
-    this.updateValue = _.debounce(this.updateValue, 300);
+    this.updateValue = _.debounce(this.updateValue, 300, {leading: true, trailing: true});
   },
   methods: {
     ...mapActions({ rootUpdateValue: 'updateValue' }),
